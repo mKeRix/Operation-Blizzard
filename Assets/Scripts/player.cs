@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Leap;
 
 public class player : MonoBehaviour {
 	public Vector2 jumpForce = new Vector2(0, 1000);
 	private Transform groundCheck;
 	public AudioClip jumpSound;
+	private Controller controller;
+	private Frame frame; 
+	private HandList hands;
+	private Hand firstHand;
+	public Vector handVelocity;
+	public float jumpTrigger;
 
 	void Awake() {
 		groundCheck = transform.Find ("groundCheck");
@@ -17,12 +24,18 @@ public class player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
+		controller = new Controller();
+		frame = controller.Frame();
+		hands = frame.Hands;
+		firstHand = hands [0];
+		handVelocity = firstHand.PalmVelocity;
+
+         if((Input.GetKeyDown(KeyCode.Space) || handVelocity.z > 200) && IsGrounded()) {
 			Jump();
 		}
 
          Vector2 playerPos = Camera.main.WorldToScreenPoint(transform.position);
-         if (playerPos.x < -(Screen.width/2))
+         if (playerPos.x < -(UnityEngine.Screen.width/2))
          {
              Die();
          }
