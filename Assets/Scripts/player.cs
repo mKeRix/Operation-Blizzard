@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class player : MonoBehaviour {
-	public Vector2 jumpForce = new Vector2(0, 300);
+	public Vector2 jumpForce = new Vector2(0, 400);
 	private Transform groundCheck;
+	public AudioClip jumpSound;
 
 	void Awake() {
 		groundCheck = transform.Find ("groundCheck");
@@ -22,8 +23,8 @@ public class player : MonoBehaviour {
     } 
 
 	void Jump() {
-		rigidbody2D.velocity = Vector2.zero;
 		rigidbody2D.AddForce (jumpForce);
+		audio.PlayOneShot(jumpSound);
 	}
 
 	bool IsGrounded () {
