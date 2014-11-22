@@ -42,22 +42,28 @@ public class player : MonoBehaviour {
     } 
 
 	void OnCollisionEnter2D(Collision2D collider) {
+		Animator anim = GetComponent<Animator>();
+
 		if (collider.gameObject.tag == "Snow") {
 			Die ();
 		}
 		else if (collider.gameObject.tag == "Ground") {
 			audio.Play ();
+			anim.speed = 0.8f;
 		}
 	}
 
 	void Jump() {
+		Animator anim = GetComponent<Animator>();
+
 		rigidbody2D.AddForce (jumpForce);
 		audio.PlayOneShot(jumpSound);
 		audio.Pause ();
+		anim.speed = 0f;
 	}
 
     void Die() {
-        Application.LoadLevel(Application.loadedLevel);
+        Application.LoadLevel(0);
     }
 
 	bool IsGrounded () {

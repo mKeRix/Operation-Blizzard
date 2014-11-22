@@ -17,7 +17,7 @@ public class gameController : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.color = Color.black;
+        GUI.color = Color.white;
         GUILayout.Label("Score: " + score.ToString());
     }
 
