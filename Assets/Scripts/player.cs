@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class player : MonoBehaviour {
-	public Vector2 jumpForce = new Vector2(0, 700);
+	public Vector2 jumpForce = new Vector2(0, 1000);
 	private Transform groundCheck;
 	public AudioClip jumpSound;
 
