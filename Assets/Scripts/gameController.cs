@@ -7,7 +7,7 @@ public class gameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("CreateSnow", 0.5f, 3f);
+        InvokeRepeating("CreateSnow", 0.5f, 2f);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,9 @@ public class gameController : MonoBehaviour {
 
     void CreateSnow()
     {
-        Instantiate(snowObject);
-        score++;
+		if (Random.Range (0, 2) == 0) {
+			Instantiate (snowObject);
+			score++;
+		}
     }
 }
