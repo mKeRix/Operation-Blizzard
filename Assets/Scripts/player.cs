@@ -28,6 +28,12 @@ public class player : MonoBehaviour {
          }
     } 
 
+	void OnCollisionEnter2D(Collision2D collider) {
+		if (collider.gameObject.tag == "Snow") {
+			Die ();
+		}
+	}
+
 	void Jump() {
 		rigidbody2D.AddForce (jumpForce);
 		audio.PlayOneShot(jumpSound);
